@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="#f8f8f8"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f8f8f8"
     tools:context=".MainActivity">
 
     <TextView
@@ -13,9 +13,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/regular"
+        android:letterSpacing="0"
         android:text="Welcome !"
         android:textColor="#800000"
-        android:letterSpacing="0"
         android:textSize="190px"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,6 +24,7 @@
         tools:layout_editor_absoluteY="159dp" />
 
     <TextView
+        android:letterSpacing="0"
         android:id="@+id/dashboadid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.050890584" />
+        app:layout_constraintGuide_percent="0.0" />
 
 
     <ImageView
@@ -69,6 +70,7 @@
         tools:layout_editor_absoluteX="283dp"
         tools:layout_editor_absoluteY="40dp" />
 
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -81,7 +83,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="366dp" />
+        tools:layout_editor_absoluteY="356dp" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/editTextTextPassword"
@@ -96,25 +98,8 @@
         android:textColorHint="#000000"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="451dp" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="700px"
-        android:layout_height="100px"
-        android:backgroundTint="@android:color/transparent"
-        android:padding="15dp"
-        android:shadowColor="#851010"
-        android:text="Log In"
-        android:textColor="#FFFFFF"
-        android:textColorLink="#FF2121"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
-        app:layout_constraintStart_toStartOf="parent"
-        app:rippleColor="#D91E1E"
-        tools:layout_editor_absoluteY="525dp" />
+        tools:layout_editor_absoluteY="429dp" />
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
@@ -130,7 +115,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.527" />
+        app:layout_constraintVertical_bias="0.498" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="700px"
+        android:layout_height="80px"
+        android:background="#F44336"
+        android:text="Log In"
+        android:textColor="Black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="503dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

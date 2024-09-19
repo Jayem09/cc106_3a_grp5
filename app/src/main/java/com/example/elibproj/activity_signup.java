@@ -7,16 +7,40 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ClickableSpan;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class activity_signup extends AppCompatActivity {
 
+    EditText username, password, confirmPassword;
+    Button signup, signin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+        username = (EditText) findViewById(R.id.signUpUsernameId);
+        password = (EditText) findViewById(R.id.signUpPasswordId);
+        confirmPassword = (EditText) findViewById(R.id.signUpCpasswordId);
+        signup = (Button) findViewById(R.id.signUpbutton);
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        signin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         // Setup clickable "Login" text
         TextView textView = findViewById(R.id.tvLogin);

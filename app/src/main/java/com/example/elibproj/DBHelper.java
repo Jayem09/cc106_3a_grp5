@@ -13,7 +13,7 @@ import java.text.BreakIterator;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    public static final String DBNAME = "Login.bd"
+    public static final String DBNAME = "Login.bd";
 
     public DBHelper(Context context) {
         super(context, "Login.db", null, 1);

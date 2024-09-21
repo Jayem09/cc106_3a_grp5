@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -18,46 +19,60 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class activity_login extends AppCompatActivity {
 
-
+    EditText username, password;
+    Button btnLogin;
+    DBHelper DB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        username = findViewById(R.id.usernameLoginId);
+        password = findViewById(R.id.passwordLoginId);
+        btnLogin = findViewById(R.id.Loginbtn);
+        DB = new DBHelper(this);
 
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String user = username.getText().toString();
+                String pass = password.getText().toString();
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
-        // Setup login button
-        Button button = findViewById(R.id.loginButton);  // Ensure this ID matches the button in the XML
-        button.setOnClickListener(view -> {
-            Intent intent = new Intent(activity_login.this, dashboard.class);  // Check if "dashboard" activity exists
-            startActivity(intent);
+                if (user.isEmpty() || pass.isEmpty()) {
+                    Toast.makeText(activity_login.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
+                } else {
+                    Boolean checkuserpass = DB.checkusernamepassword(user, pass);
+                    if (checkuserpass) {
+                        Toast.makeText(activity_login.this, "Sign in Successfully", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), homeDashboard.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(activity_login.this, "Wrong Credentials!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
         });
 
         // Setup clickable "Sign Up" text
-        TextView textView = findViewById(R.id.tvSignUp);  // Ensure this ID matches the TextView in the XML
+        TextView textView = findViewById(R.id.tvSignUp); // Ensure this ID matches your XML
         String text = "Don't have an account? Sign Up";
         SpannableString spannableString = new SpannableString(text);
 
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(View widget) {
-                // Navigate to activity_signup when "Sign Up" is clicked
-                Intent intent = new Intent( activity_login.this, activity_signup.class);  // Check if "activity_signup" exists
-                startActivity(intent);
+                try {
+                    Intent intent = new Intent(activity_login.this, activity_signup.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Toast.makeText(activity_login.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         };
 
-        // Set the clickable span to the "Sign Up" part of the text
+        // Set the clickable span
         spannableString.setSpan(clickableSpan, 23, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        // Apply the SpannableString and make it clickable
         textView.setText(spannableString);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
     }

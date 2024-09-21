@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +18,7 @@ public class activity_signup extends AppCompatActivity {
 
     EditText username, password, confirmPassword;
     Button signup, signin;
+    DBHelper DB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +29,38 @@ public class activity_signup extends AppCompatActivity {
         password = (EditText) findViewById(R.id.signUpPasswordId);
         confirmPassword = (EditText) findViewById(R.id.signUpCpasswordId);
         signup = (Button) findViewById(R.id.signUpbutton);
+        DB = new DBHelper(this);
+
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String user = username.getText() .toString();
+                String pass = password.getText() . toString();
+                String Cpass = confirmPassword.getText() .toString();
+
+                if(user.equals("") || pass.equals("") || Cpass.equals(""))
+                    Toast.makeText(activity_signup.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
+                else{
+                    if (pass.equals(Cpass)){
+                        Boolean checkuser = DB.checkusername(user);
+                        if (checkuser == false){
+                            Boolean insert = DB.inserData(user, pass);
+                            if (insert == true ){
+                                Toast.makeText(activity_signup.this, "Register Successfully", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), homeDashboard.class);
+                                startActivity(intent);
+                            }else{
+                                Toast.makeText(activity_signup.this, "User already exists! Please sign in", Toast.LENGTH_SHORT).show();
+                            }
+                        }else {
+                            Toast.makeText(activity_signup.this, "Password not match!", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+
+                }
+
 
             }
         });
@@ -38,7 +68,8 @@ public class activity_signup extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getApplicationContext(), activity_login.class);
+                startActivity(intent);
             }
         });
 

@@ -2,26 +2,20 @@ package com.example.elibproj;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
+import android.util.Log;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class activity_login extends AppCompatActivity {
 
-    EditText username, password;
-    Button btnLogin;
-    DBHelper DB;
+    private EditText username, password;
+    private Button btnLogin;
+    private DBHelper DB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,48 +26,47 @@ public class activity_login extends AppCompatActivity {
         password = findViewById(R.id.passwordLoginId);
         btnLogin = findViewById(R.id.Loginbtn);
         DB = new DBHelper(this);
+        Button btnSignup = (Button)findViewById(R.id.buttontoSignuppage);
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String user = username.getText().toString();
-                String pass = password.getText().toString();
 
-                if (user.isEmpty() || pass.isEmpty()) {
-                    Toast.makeText(activity_login.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
-                } else {
-                    Boolean checkuserpass = DB.checkusernamepassword(user, pass);
-                    if (checkuserpass) {
-                        Toast.makeText(activity_login.this, "Sign in Successfully", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), homeDashboard.class);
+
+        if (btnSignup != null) {
+            btnSignup.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    try {
+                        Intent intent = new Intent(activity_login.this, activity_signup.class);
+                        Log.d("LoginActivity", "Starting SignupActivity");
                         startActivity(intent);
-                    } else {
-                        Toast.makeText(activity_login.this, "Wrong Credentials!", Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        Log.e("LoginActivity", "Error starting SignupActivity", e);
                     }
+                }
+            });
+        } else {
+            Log.e("LoginActivity", "btnSignup is null");
+        }
+
+
+        btnLogin.setOnClickListener(view -> {
+            String user = username.getText().toString().trim();
+            String pass = password.getText().toString().trim();
+
+            if (TextUtils.isEmpty(user) || TextUtils.isEmpty(pass)) {
+                Toast.makeText(activity_login.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
+            } else {
+                boolean checkUserPass = DB.checkusernamepassword(user, pass);
+                if (checkUserPass) {
+                    Toast.makeText(activity_login.this, "Sign in Successfully", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), homeDashboard.class);
+                    startActivity(intent);
+                    finish(); // Optional: finish login activity to prevent going back
+                } else {
+                    Toast.makeText(activity_login.this, "Wrong Credentials!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-        // Setup clickable "Sign Up" text
-        TextView textView = findViewById(R.id.tvSignUp); // Ensure this ID matches your XML
-        String text = "Don't have an account? Sign Up";
-        SpannableString spannableString = new SpannableString(text);
 
-        ClickableSpan clickableSpan = new ClickableSpan() {
-            @Override
-            public void onClick(View widget) {
-                try {
-                    Intent intent = new Intent(activity_login.this, activity_signup.class);
-                    startActivity(intent);
-                } catch (Exception e) {
-                    Toast.makeText(activity_login.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        };
-
-        // Set the clickable span
-        spannableString.setSpan(clickableSpan, 23, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        textView.setText(spannableString);
-        textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 }

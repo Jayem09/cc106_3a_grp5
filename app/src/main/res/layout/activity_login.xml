@@ -142,18 +142,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/buttontoSignuppage"
-        android:layout_width="500px"
-        android:layout_height="90px"
-        android:layout_marginTop="512dp"
-        android:background="@color/Crimson"
-        android:text="Sign Up"
-        android:textColor="#FFD9D9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

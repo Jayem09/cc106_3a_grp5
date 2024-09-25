@@ -26,26 +26,6 @@ public class activity_login extends AppCompatActivity {
         password = findViewById(R.id.passwordLoginId);
         btnLogin = findViewById(R.id.Loginbtn);
         DB = new DBHelper(this);
-        Button btnSignup = (Button)findViewById(R.id.buttontoSignuppage);
-
-
-
-        if (btnSignup != null) {
-            btnSignup.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    try {
-                        Intent intent = new Intent(activity_login.this, activity_signup.class);
-                        Log.d("LoginActivity", "Starting SignupActivity");
-                        startActivity(intent);
-                    } catch (Exception e) {
-                        Log.e("LoginActivity", "Error starting SignupActivity", e);
-                    }
-                }
-            });
-        } else {
-            Log.e("LoginActivity", "btnSignup is null");
-        }
 
 
         btnLogin.setOnClickListener(view -> {
@@ -66,7 +46,5 @@ public class activity_login extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 }

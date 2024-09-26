@@ -2,14 +2,9 @@ package com.example.elibproj;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.MutableContextWrapper;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import androidx.annotation.Nullable;
-
-import java.text.BreakIterator;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -30,7 +25,7 @@ public class DBHelper extends SQLiteOpenHelper {
       MyDb.execSQL("drop table if exists users");
     }
 
-    public Boolean inserData(String username, String password) {
+    public Boolean insertData(String username, String password) {
         SQLiteDatabase MyDb = this.getWritableDatabase();
         ContentValues contentValues= new ContentValues();
         contentValues.put("username", username);

@@ -2,9 +2,7 @@ package com.example.elibproj;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -13,9 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class activity_login extends AppCompatActivity {
 
-    private EditText username, password;
-    private Button btnLogin;
-    private DBHelper DB;
+       EditText username, password;
+       Button btnLogin;
+       DBHelper DB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +25,6 @@ public class activity_login extends AppCompatActivity {
         btnLogin = findViewById(R.id.Loginbtn);
         DB = new DBHelper(this);
 
-
         btnLogin.setOnClickListener(view -> {
             String user = username.getText().toString().trim();
             String pass = password.getText().toString().trim();
@@ -38,9 +35,8 @@ public class activity_login extends AppCompatActivity {
                 boolean checkUserPass = DB.checkusernamepassword(user, pass);
                 if (checkUserPass) {
                     Toast.makeText(activity_login.this, "Sign in Successfully", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), homeDashboard.class);
+                    Intent intent = new Intent(getApplicationContext(), activity_home.class);
                     startActivity(intent);
-                    finish(); // Optional: finish login activity to prevent going back
                 } else {
                     Toast.makeText(activity_login.this, "Wrong Credentials!", Toast.LENGTH_SHORT).show();
                 }

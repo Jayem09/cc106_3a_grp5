@@ -82,7 +82,7 @@ public class activity_signup extends AppCompatActivity {
             }
         };
 
-        spannableString.setSpan(clickableSpan, 21, 27, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // set the span for the "Log in" text
+        spannableString.setSpan(clickableSpan, 21, 27, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); 
 
         textViewLogin.setText(spannableString);
         textViewLogin.setMovementMethod(LinkMovementMethod.getInstance());

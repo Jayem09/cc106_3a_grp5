@@ -69,7 +69,7 @@ public class activity_signup extends AppCompatActivity {
 ;            }
         });
 
-        TextView textViewLogin = findViewById(R.id.textviewLogin); // assume this is the ID of your TextView
+        TextView textViewLogin = findViewById(R.id.textviewLogin);
 
         String text = "Existing user? Go to Log in";
         SpannableString spannableString = new SpannableString(text);

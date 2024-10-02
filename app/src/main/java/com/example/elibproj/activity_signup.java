@@ -77,7 +77,7 @@ public class activity_signup extends AppCompatActivity {
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(View view) {
-                // navigate to LoginActivity
+                // navigate to activity_login
                 startActivity(new Intent(activity_signup.this, activity_login.class));
             }
         };

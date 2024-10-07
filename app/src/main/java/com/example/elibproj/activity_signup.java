@@ -64,27 +64,9 @@ public class activity_signup extends AppCompatActivity {
                     }
 
                 }
-
-
-;            }
+            }
         });
 
-        TextView textViewLogin = findViewById(R.id.textviewLogin);
 
-        String text = "Existing user? Go to Log in";
-        SpannableString spannableString = new SpannableString(text);
-
-        ClickableSpan clickableSpan = new ClickableSpan() {
-            @Override
-            public void onClick(View view) {
-                // navigate to activity_login
-                startActivity(new Intent(activity_signup.this, activity_login.class));
-            }
-        };
-
-        spannableString.setSpan(clickableSpan, 21, 27, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); 
-
-        textViewLogin.setText(spannableString);
-        textViewLogin.setMovementMethod(LinkMovementMethod.getInstance());
     }
 }

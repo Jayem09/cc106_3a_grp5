@@ -2,9 +2,15 @@ package com.example.elibproj;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,5 +48,23 @@ public class activity_login extends AppCompatActivity {
                 }
             }
         });
+
+        TextView textViewLogin = findViewById(R.id.texttoSignup);
+
+        String text = "Doesn't have account? Sign up";
+        SpannableString spannableString = new SpannableString(text);
+
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(activity_login.this, activity_signup.class));
+            }
+        };
+
+        spannableString.setSpan(clickableSpan, 21, 29, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        textViewLogin.setText(spannableString);
+        textViewLogin.setMovementMethod(LinkMovementMethod.getInstance());
     }
 }

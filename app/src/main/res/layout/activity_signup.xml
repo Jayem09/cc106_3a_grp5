@@ -30,7 +30,7 @@
         android:shadowColor="#343341"
         android:text="Sign Up Let’s get started"
         android:textColor="#402929"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -95,13 +95,14 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:textColorHint="#000000"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.535" />
+
 
     <EditText
         android:id="@+id/confimPassword"
@@ -111,14 +112,13 @@
         android:ems="10"
         android:hint="Confim Password"
         android:textColorHint="#000000"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.587" />
-
+        app:layout_constraintVertical_bias="0.59" />
 
     <EditText
         android:id="@+id/signUpUsernameId"
@@ -127,8 +127,10 @@
         android:ems="10"
         android:hint="Username"
         android:inputType="textEmailAddress"
+        android:textColorHighlight="#453A3A"
         android:textColorHint="#000000"
-        android:textSize="12sp"
+        android:textColorLink="#000000"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"

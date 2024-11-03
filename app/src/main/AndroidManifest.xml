@@ -13,10 +13,11 @@
         android:theme="@style/Theme.Elibproj"
         tools:targetApi="31">
         <activity
-            android:name=".test2"
-            android:exported="false" />
+            android:name=".AddActivity"
+            android:label="Add Book"
+            android:parentActivityName=".Recycle"/>
         <activity
-            android:name=".Test"
+            android:name=".Recycle"
             android:exported="false" />
         <activity
             android:name=".activity_signup"

@@ -13,9 +13,28 @@
         android:theme="@style/Theme.Elibproj"
         tools:targetApi="31">
         <activity
+            android:name=".RecycleView"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".AddActivity"
+            android:exported="false"
             android:label="Add Book"
-            android:parentActivityName=".Recycle"/>
+            android:parentActivityName=".Recycle">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".UpdateActivity"
+            android:exported="false" />
         <activity
             android:name=".Recycle"
             android:exported="false" />

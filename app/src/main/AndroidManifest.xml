@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Elibproj"
         tools:targetApi="31">
         <activity
-            android:name=".RecycleView"
+            android:name=".MainActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +25,7 @@
             android:name=".AddActivity"
             android:exported="false"
             android:label="Add Book"
-            android:parentActivityName=".Recycle">
+            android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,15 +34,13 @@
         </activity>
         <activity
             android:name=".UpdateActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
         <activity
-            android:name=".Recycle"
+            android:name=".activity_home"
             android:exported="false" />
         <activity
             android:name=".activity_signup"
-            android:exported="true" />
-        <activity
-            android:name=".activity_home"
             android:exported="true" />
         <activity
             android:name=".activity_login"

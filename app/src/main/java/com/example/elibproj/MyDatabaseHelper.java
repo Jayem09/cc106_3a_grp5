@@ -1,4 +1,5 @@
-package com.jovanovic.stefan.sqlitetutorial;
+package com.example.elibproj;
+
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,7 +10,7 @@ import android.util.Log;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 
-class MyDatabaseHelper extends SQLiteOpenHelper {
+public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
     private static final String DATABASE_NAME = "BookLibrary.db";

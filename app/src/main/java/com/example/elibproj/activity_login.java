@@ -1,5 +1,6 @@
 package com.example.elibproj;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -17,9 +18,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class activity_login extends AppCompatActivity {
 
-       EditText username, password;
-       Button btnLogin;
-       DBHelper DB;
+    EditText username, password;
+    Button btnLogin;
+    DBHelper DB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

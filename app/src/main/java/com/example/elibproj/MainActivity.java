@@ -9,89 +9,88 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.elibproj.CustomAdapter;
 import com.example.elibproj.MyDatabaseHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    FloatingActionButton add_button;
-    ImageView empty_imageview;
-    TextView no_data;
+    private RecyclerView recyclerView;
+    private FloatingActionButton addButton;
+    private ImageView emptyImageView;
+    private TextView noData;
 
-    MyDatabaseHelper myDB;
-    ArrayList<String> book_id, book_title, book_author, book_pages;
-    CustomAdapter customAdapter;
+    private MyDatabaseHelper myDB;
+    private List<String> bookId, bookTitle, bookAuthor, bookPages;
+    private CustomAdapter customAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Initialize views
         recyclerView = findViewById(R.id.recyclerView);
-        add_button = findViewById(R.id.add_button);
-        empty_imageview = findViewById(R.id.empty_imageview);
-        no_data = findViewById(R.id.no_data);
-        add_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AddActivity.class);
-                startActivity(intent);
-            }
-        });
+        addButton = findViewById(R.id.add_button);
+        emptyImageView = findViewById(R.id.empty_imageview);
+        noData = findViewById(R.id.no_data);
 
-        myDB = new MyDatabaseHelper(MainActivity.this);
-        book_id = new ArrayList<>();
-        book_title = new ArrayList<>();
-        book_author = new ArrayList<>();
-        book_pages = new ArrayList<>();
+        // Set up the database helper
+        myDB = new MyDatabaseHelper(this);
+        bookId = new ArrayList<>();
+        bookTitle = new ArrayList<>();
+        bookAuthor = new ArrayList<>();
+        bookPages = new ArrayList<>();
 
+        // Set up the RecyclerView
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(customAdapter);
+
+        // Load data from the database
         storeDataInArrays();
 
-        customAdapter = new CustomAdapter(MainActivity.this,this, book_id, book_title, book_author,
-                book_pages);
-        recyclerView.setAdapter(customAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-
+        // Set up the add button click listener
+        addButton.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, AddActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1){
+        if (requestCode == 1) {
             recreate();
         }
     }
 
-    void storeDataInArrays(){
+    private void storeDataInArrays() {
         Cursor cursor = myDB.readAllData();
-        if(cursor.getCount() == 0){
-            empty_imageview.setVisibility(View.VISIBLE);
-            no_data.setVisibility(View.VISIBLE);
-        }else{
-            while (cursor.moveToNext()){
-                book_id.add(cursor.getString(0));
-                book_title.add(cursor.getString(1));
-                book_author.add(cursor.getString(2));
-                book_pages.add(cursor.getString(3));
+        if (cursor.getCount() == 0) {
+            emptyImageView.setVisibility(View.VISIBLE);
+            noData.setVisibility(View.VISIBLE);
+        } else {
+            while (cursor.moveToNext()) {
+                bookId.add(cursor.getString(0));
+                bookTitle.add(cursor.getString(1));
+                bookAuthor.add(cursor.getString(2));
+                bookPages.add(cursor.getString(3));
             }
-            empty_imageview.setVisibility(View.GONE);
-            no_data.setVisibility(View.GONE);
+            emptyImageView.setVisibility(View.GONE);
+            noData.setVisibility(View.GONE);
         }
+        cursor.close(); // Close the cursor to prevent memory leaks
     }
 
     @Override
@@ -103,32 +102,25 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.delete_all){
+        if (item.getItemId() == R.id.delete_all) {
             confirmDialog();
         }
         return super.onOptionsItemSelected(item);
     }
 
-    void confirmDialog(){
+    private void confirmDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Delete All?");
         builder.setMessage("Are you sure you want to delete all Data?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                MyDatabaseHelper myDB = new MyDatabaseHelper(MainActivity.this);
-                myDB.deleteAllData();
-                //Refresh Activity
-                Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        builder.setPositiveButton("Yes", (dialogInterface, i) -> {
+            myDB.deleteAllData();
+            // Refresh Activity
+            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
         });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
+        builder.setNegativeButton("No", (dialogInterface, i) -> {
+            // Do nothing
         });
         builder.create().show();
     }

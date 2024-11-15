@@ -1,6 +1,5 @@
 package com.example.elibproj;
 
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,10 +30,10 @@ public class UpdateActivity extends AppCompatActivity {
         update_button = findViewById(R.id.update_button);
         delete_button = findViewById(R.id.delete_button);
 
-        //First we call this
+        // First we call this
         getAndSetIntentData();
 
-        //Set actionbar title after getAndSetIntentData method
+        // Set actionbar title after getAndSetIntentData method
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
             ab.setTitle(title);
@@ -43,7 +42,6 @@ public class UpdateActivity extends AppCompatActivity {
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //And only then we call this
                 MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateActivity.this);
                 title = title_input.getText().toString().trim();
                 author = author_input.getText().toString().trim();
@@ -51,30 +49,30 @@ public class UpdateActivity extends AppCompatActivity {
                 myDB.updateData(id, title, author, pages);
             }
         });
+
         delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 confirmDialog();
             }
         });
-
     }
 
     void getAndSetIntentData(){
         if(getIntent().hasExtra("id") && getIntent().hasExtra("title") &&
                 getIntent().hasExtra("author") && getIntent().hasExtra("pages")){
-            //Getting Data from Intent
+            // Getting Data from Intent
             id = getIntent().getStringExtra("id");
             title = getIntent().getStringExtra("title");
             author = getIntent().getStringExtra("author");
             pages = getIntent().getStringExtra("pages");
 
-            //Setting Intent Data
+            // Setting Intent Data
             title_input.setText(title);
             author_input.setText(author);
             pages_input.setText(pages);
-            Log.d("stev", title+" "+author+" "+pages);
-        }else{
+            Log.d("stev", title + " " + author + " " + pages);
+        } else {
             Toast.makeText(this, "No data.", Toast.LENGTH_SHORT).show();
         }
     }
@@ -94,7 +92,7 @@ public class UpdateActivity extends AppCompatActivity {
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
+                // Do nothing on cancel
             }
         });
         builder.create().show();

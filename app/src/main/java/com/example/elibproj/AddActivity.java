@@ -68,13 +68,7 @@ public class AddActivity extends AppCompatActivity {
 
                 // Create an instance of the database helper and insert the book
                 MyDatabaseHelper myDB = new MyDatabaseHelper(AddActivity.this);
-                myDB.addBook(title, author, pages, filePath); // Assuming you still want to save book details
-
-                // Save the PDF file in the database
-                if (selectedFileUri != null) {
-                    String fileName = getFileNameFromUri(selectedFileUri);
-                    myDB.addPdfFile(fileName, filePath); // Save PDF details
-                }
+                myDB.addBook(title, author, pages, filePath); // Save book details along with file path
 
                 // Clear input fields after inserting the book
                 title_input.setText("");
@@ -118,7 +112,5 @@ public class AddActivity extends AppCompatActivity {
     private String getFilePathFromUri(Uri uri) {
         // Here we just return the path as a string
         return uri.getPath();
-
     }
-
 }

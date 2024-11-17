@@ -4,7 +4,7 @@ package com.example.elibproj;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ShareCompat;
-import com.github.barteksc.pdfviewer.PDFView;
+import com.github.pdfviewer.PDFView;
 import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;

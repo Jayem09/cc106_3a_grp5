@@ -40,12 +40,14 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation("com.github.Foysalofficial:pdf-viewer-android:6.1")
+    implementation("com.karumi:dexter:6.2.3")
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation ("com.github.Foysalofficial:pdf-viewer-android:2.0")
+
 }
 
 

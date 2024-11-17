@@ -16,9 +16,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 
 rootProject.name = "Elibproj"
 include(":app")
- 

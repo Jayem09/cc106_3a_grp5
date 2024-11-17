@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    tools:ignore="ScopedStorage" />
 
     <application
         android:allowBackup="true"
@@ -11,46 +12,14 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Elibproj"
         tools:targetApi="31">
         <activity
-            android:name=".BookListActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".MainActivity"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".AddActivity"
-            android:exported="false"
-            android:label="Add Book"
-            android:parentActivityName=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".UpdateActivity"
-            android:exported="false"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".activity_signup"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".activity_login"
             android:exported="true">
@@ -60,6 +29,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity_signup"
+            android:exported="true" />
     </application>
 
 </manifest>

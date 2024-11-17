@@ -39,17 +39,20 @@
         android:backgroundTint="@color/White" />
 
     <androidx.appcompat.widget.SearchView
-        android:layout_width="match_parent"
-        android:layout_below="@id/view"
-        android:background="@drawable/round"
-        android:backgroundTint="@color/White"
-        android:layout_height="wrap_content"
-        app:iconifiedByDefault="false"
-        app:queryHint="Search Here.."
-        app:searchIcon="@drawable/ic_search"
         android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view"
+        android:layout_margin="15dp"
+        android:layout_marginTop="129dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/round"
+        android:backgroundTint="#DD800000"
+        android:padding="10dp"
+        app:iconifiedByDefault="false"
         app:queryBackground="@android:color/transparent"
-        android:layout_margin="15dp"/>
+        app:queryHint="Search Here.."
+        app:searchIcon="@drawable/ic_search" />
 
     <ProgressBar
         android:id="@+id/progressBar"

@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void checkPermission() {
-        Dexter.withActivity(this)
+        Dexter.withContext(this)
                 .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .withListener(new MultiplePermissionsListener() {
                     @Override

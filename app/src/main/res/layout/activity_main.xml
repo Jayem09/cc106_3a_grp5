@@ -9,20 +9,17 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="273dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/regular"
         android:text="E- CITEC LIBRARY"
         android:textColor="@color/Crimson"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.211" />
+        android:textSize="40sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+     />
 
     <ImageView
         android:id="@+id/imageView"
@@ -47,20 +44,17 @@
         android:backgroundTint="@color/White" />
 
     <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@id/view"
-        android:layout_margin="15dp"
-        android:layout_marginTop="129dp"
-        android:layout_marginBottom="15dp"
         android:background="@drawable/round"
-        android:backgroundTint="@color/Wheat"
-        android:padding="10dp"
+        android:backgroundTint="#C5DEDEDE"
+        android:layout_height="wrap_content"
         app:iconifiedByDefault="false"
-        app:queryBackground="@android:color/transparent"
         app:queryHint="Search Here.."
-        app:searchIcon="@drawable/ic_search" />
+        app:searchIcon="@drawable/ic_search"
+        android:id="@+id/searchView"
+        app:queryBackground="@android:color/transparent"
+        android:layout_margin="15dp"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
